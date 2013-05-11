@@ -1,0 +1,18 @@
+{
+  "name": "organic-dirtransform",
+  "version": "0.0.1",
+  "description": "ERROR: No README.md file found!",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "organic": "latest",
+    "underscore": "latest",
+    "glob": "3.1.14",
+    "underscore": "1.4.4",
+    "async": "0.2.5"
+  },  
+  "repository": "",
+  "author": "",
+  "license": "MIT"
+}
