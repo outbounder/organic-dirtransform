@@ -2,6 +2,7 @@ var util = require("util");
 var Organel = require("organic").Organel;
 var glob = require("glob");
 var async = require("async");
+var _ = require("underscore");
 
 module.exports = function DirTransform(plasma, config){
   Organel.call(this, plasma);
@@ -41,19 +42,23 @@ module.exports = function DirTransform(plasma, config){
           this.context = c.output;
           this.scanAndLoadInto(this.config.target, dest, function(){
             self.output = dest;
-            self.emit(self.config.emitResultAs || "DirTransform", self);
+            self.emitResult();
           })  
         })
       } else
         this.scanAndLoadInto(this.config.target, dest, function(){
           self.output = dest;
-          self.emit(self.config.emitResultAs || "DirTransform", self);
+          self.emitResult();
         })
       return false; // do not aggregate reactOn incoming chemicals.
     })
 }
 
 util.inherits(module.exports, Organel);
+
+module.exports.prototype.emitResult = function(){
+  this.emit({type: this.config.emitResultAs || "DirTransform", data: this.output});
+}
 
 module.exports.prototype.scanAndLoadInto = function(options, dest, callback) {
   var self = this;
