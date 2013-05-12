@@ -1,6 +1,10 @@
 var path = require("path");
 var fs = require("fs");
 
+var getFilename = function(url) {
+  return url.split("/").join("-").split(":").join("_");
+}
+
 module.exports = function(file, app, options, next) {
   var self = this;
   var url = this.urlizeFile(file, options, "/code.js", ".js");
@@ -15,7 +19,7 @@ module.exports = function(file, app, options, next) {
     }, function(c){
       if(c instanceof Error) return next(c);
       if(options.assetsStore)
-        fs.writeFile(path.join(options.assetsStore,url.replace("/","_")), c.data, function(err){
+        fs.writeFile(path.join(options.assetsStore, getFilename(url)), c.data, function(err){
           if(err) next(err);
         });
       res.setHeader("content-type","text/javascript");
