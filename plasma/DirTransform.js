@@ -44,6 +44,7 @@ module.exports = function DirTransform(plasma, config){
             self.output = dest;
             self.emitResult();
           })  
+          return false;
         })
       } else
         this.scanAndLoadInto(this.config.target, dest, function(){
