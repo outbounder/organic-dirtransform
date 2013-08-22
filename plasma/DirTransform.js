@@ -39,7 +39,7 @@ module.exports = function DirTransform(plasma, config){
       var dest = c.data.app || c.data || c; /* .app because of ExpressHttpPages XXX */
       if(this.config.delayLoadIntoWithContextOn) {
         this.on(this.config.delayLoadIntoWithContextOn, function(c){
-          this.context = c.output;
+          this.context = c.data;
           this.scanAndLoadInto(this.config.target, dest, function(){
             self.output = dest;
             self.emitResult();
