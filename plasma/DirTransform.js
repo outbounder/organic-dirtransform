@@ -36,7 +36,7 @@ module.exports = function DirTransform(plasma, config){
 
   if(this.config.reactOn)
     this.on(this.config.reactOn, function(c){
-      var dest = c.data.app || c.data || c; /* .app because of ExpressHttpPages XXX */
+      var dest = c.data || c;
       if(this.config.delayLoadIntoWithContextOn) {
         this.on(this.config.delayLoadIntoWithContextOn, function(c){
           this.context = c.data;
